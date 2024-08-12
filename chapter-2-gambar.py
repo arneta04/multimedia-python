@@ -38,6 +38,11 @@ def main():
     # Filter the image
     try:
         filtered_image = resized_image.filter(ImageFilter.BLUR)
+
+        # Convert RGBA to RGB if needed
+        if filtered_image.mode == 'RGBA':
+            filtered_image = filtered_image.convert('RGB')
+
         filtered_image.save('filtered_result.jpg')
         print("✅ Image successfully filtered and saved as filtered_result.jpg.")
     except Exception as e:
